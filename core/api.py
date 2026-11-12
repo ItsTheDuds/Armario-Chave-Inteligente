@@ -1,19 +1,16 @@
 from django.db import connection
 from ninja import NinjaAPI, Schema
 
-
 api = NinjaAPI(
     title="API Armário Inteligente SENAI",
     version="1.0.0",
     description="Serviços RESTful para validação e controle de chaves RFID/NFC",
 )
 
-
 class StatusResponseSchema(Schema):
     status: str
     servidor: str
     versao: str
-
 
 class ConsultaUUIDSchema(Schema):
     uuid: str
@@ -31,8 +28,6 @@ class ConsultaEspaco(Schema):
     horario_retirada: str
     horario_previsto: str
 
-
-
 @api.get("/status", response=StatusResponseSchema, tags=["Sistema"])
 def status_sistema(request):
     return {
@@ -40,7 +35,6 @@ def status_sistema(request):
         "servidor": "Django Ninja + Supabase",
         "versao": "1.0.0",
     }
-
 
 @api.get(
     "/consulta-uuid/{uuid}",
