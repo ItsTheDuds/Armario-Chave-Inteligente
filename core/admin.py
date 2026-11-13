@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Unidade, Usuario, UsuarioUnidade, Espaco, Chave
+from .models import Unidade, Usuario, Espaco, Chave
 
 @admin.register(Unidade)
 class UnidadeAdmin(admin.ModelAdmin):
@@ -8,13 +8,9 @@ class UnidadeAdmin(admin.ModelAdmin):
     
 @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ("cod_usuario", "nome")
+    list_display = ("cod_usuario", "nome", "perfil", "st_ativo")
     search_fields = ("nome",)
-
-@admin.register(UsuarioUnidade)
-class UsuarioUnidadeAdmin(admin.ModelAdmin):
-    list_display = ("cod_usuario_unidade", "usuario", "unidade")
-    search_fields = ("usuario__nome", "unidade__ds_unidade")
+    list_filter = ("perfil", "st_ativo")
 
 @admin.register(Espaco)
 class EspacoAdmin(admin.ModelAdmin):
